@@ -91,8 +91,8 @@ pub(crate) fn calculate_illuminate_cost(
 
             for row in (up_left_corner.0)..=(bottom_right_corner.0) {
                 for col in (up_left_corner.1)..=(bottom_right_corner.1) {
-                    if row != robot_row - 1 && row != robot_row && row != robot_row + 1 {
-                        if col != robot_col - 1 && col != robot_col && col != robot_col + 1 {
+                    if row + 1 < robot_row && row  > robot_row + 1 {
+                        if col + 1 < robot_col && col > robot_col + 1 {
                             tiles.push((row, col));
                         }
                     }
