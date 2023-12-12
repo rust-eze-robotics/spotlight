@@ -1,7 +1,7 @@
 # Rust-eze spotlight
 ### Discovers a square area around the robot in an energy-efficient way, leaving the robot still.
 
-#### _illuminate_ discovers the tiles of a square area around the robot.
+### _illuminate_ discovers the tiles of a square area around the robot.
 ```rust
 pub fn illuminate(
 	&self,
@@ -17,7 +17,7 @@ pub fn illuminate(
 #### Return
 - Result<(), String> => Err(e) represents a possible error described by String e.
 
-#### _calculate_illuminate_cost_ calculates the energy required by _illuminate_ to discover the square area with the given distance.
+### _calculate_illuminate_cost_ calculates the energy required by _illuminate_ to discover the square area with the given distance.
 ```rust
 pub fn calculate_illuminate_cost(
 	&self,
@@ -31,4 +31,4 @@ pub fn calculate_illuminate_cost(
  - world: &World
 - distance: usize => distance from the robot to the edges of the square area.
 #### Return
-- Result<(), String> => Err(e) represents a possible error described by String e.
+- Result<usize, String> => Ok(cost) indicates the required energy, Err(e) represents a possible error described by String e.

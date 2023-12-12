@@ -104,7 +104,7 @@ impl Spotlight {
     /// - distance: usize => distance from the robot to the edges of the square area.
     ///
     /// # Return
-    /// - Result<(), String> => Err(e) represents a possible error described by String e.
+    /// - Result<usize, String> => Ok(cost) indicates the required energy, Err(e) represents a possible error described by String e.
     pub fn calculate_illuminate_cost(
         &self,
         robot: &impl Runnable,
