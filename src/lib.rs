@@ -13,7 +13,7 @@ pub struct Spotlight {}
 impl Tools for Spotlight {}
 
 impl Spotlight {
-    /// illuminate discovers all the tiles of a square area around the robot.
+    /// illuminate discovers the tiles of a square area around the robot.
     ///
     /// # Arguments
     /// - robot: &impl Runnable
@@ -21,7 +21,7 @@ impl Spotlight {
     /// - distance: usize => distance from the robot to the edges of the square area.
     ///
     /// # Return
-    /// - Result<(), String>   
+    /// - Result<(), String> => Err(e) represents a possible error described by String e.
     pub fn illuminate(
         &self,
         robot: &mut impl Runnable,
@@ -104,7 +104,7 @@ impl Spotlight {
     /// - distance: usize => distance from the robot to the edges of the square area.
     ///
     /// # Return
-    /// - Result<usize, String>
+    /// - Result<(), String> => Err(e) represents a possible error described by String e.
     pub fn calculate_illuminate_cost(
         &self,
         robot: &impl Runnable,
