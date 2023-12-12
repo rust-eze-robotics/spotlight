@@ -13,6 +13,15 @@ pub struct Spotlight {}
 impl Tools for Spotlight {}
 
 impl Spotlight {
+    /// illuminate discovers all the tiles of a square area around the robot.
+    ///
+    /// # Arguments
+    /// - robot: &impl Runnable
+    /// - world: &World
+    /// - distance: usize => distance from the robot to the edges of the square area.
+    ///
+    /// # Return
+    /// - Result<(), String>   
     pub fn illuminate(
         &self,
         robot: &mut impl Runnable,
@@ -87,6 +96,15 @@ impl Spotlight {
         }
     }
 
+    /// calculate_illuminate_cost calculates the energy required by illuminate to discover the square area with the given distance.
+    ///
+    /// # Arguments
+    /// - robot: &impl Runnable
+    /// - world: &World
+    /// - distance: usize => distance from the robot to the edges of the square area.
+    ///
+    /// # Return
+    /// - Result<usize, String>
     pub fn calculate_illuminate_cost(
         &self,
         robot: &impl Runnable,
