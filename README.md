@@ -8,7 +8,7 @@ pub fn illuminate(
 	robot: &mut impl Runnable,
 	world: &mut World,
 	distance: usize,
-) ->  Result<(), String>
+) -> Result<(), String>
 ```
 #### Arguments
 - robot: &impl Runnable
@@ -24,7 +24,7 @@ pub fn calculate_illuminate_cost(
 	robot: &impl Runnable,
 	world: &World,
 	distance: usize,
-) ->  Result<usize, String>
+) -> Result<usize, String>
 ```
 #### Arguments
 - robot: &impl Runnable
