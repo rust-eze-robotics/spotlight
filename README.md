@@ -11,8 +11,8 @@ pub fn illuminate(
 ) -> Result<(), String>
 ```
 #### Arguments
-- robot: &impl Runnable
-- world: &World
+- robot: &mut impl Runnable
+- world: &mut World
 - distance: usize => distance from the robot to the edges of the square area.
 #### Return
 - Result<(), String> => Err(e) represents a possible error described by String e.
