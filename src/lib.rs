@@ -124,14 +124,14 @@ impl Spotlight {
                 let mut ret = 0;
 
                 let up_distance = std::cmp::min(distance, robot_row);
+                let left_distance = std::cmp::min(distance, robot_col);
                 let down_distance = std::cmp::min(distance, size - 1 - robot_row);
                 let right_distance = std::cmp::min(distance, size - 1 - robot_col);
-                let left_distance = std::cmp::min(distance, robot_col);
 
                 ret += calculate_view_cost(up_distance);
+                ret += calculate_view_cost(left_distance);
                 ret += calculate_view_cost(down_distance);
                 ret += calculate_view_cost(right_distance);
-                ret += calculate_view_cost(left_distance);
 
                 let up_left_corner = get_up_left_corner(robot_row, robot_col, distance);
                 let bottom_right_corner =
@@ -141,11 +141,7 @@ impl Spotlight {
 
                 for row in (up_left_corner.0)..=(bottom_right_corner.0) {
                     for col in (up_left_corner.1)..=(bottom_right_corner.1) {
-                        if row + 1 < robot_row && row > robot_row + 1 {
-                            if col + 1 < robot_col && col > robot_col + 1 {
-                                tiles.push((row, col));
-                            }
-                        }
+                        tiles.push((row, col));
                     }
                 }
 

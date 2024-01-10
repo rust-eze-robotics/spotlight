@@ -21,7 +21,7 @@ pub(crate) fn calculate_discover_tiles_cost(world: &World, tiles: Vec<(usize, us
         }
     }
 
-    ret
+    ret * 3
 }
 
 pub(crate) fn get_up_left_corner(
