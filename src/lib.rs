@@ -23,7 +23,6 @@ impl Spotlight {
     /// # Return
     /// - Result<(), String> => Err(e) represents a possible error described by String e.
     pub fn illuminate(
-        &self,
         robot: &mut impl Runnable,
         world: &mut World,
         distance: usize,
@@ -43,7 +42,7 @@ impl Spotlight {
                     return Ok(());
                 }
 
-                match self.calculate_illuminate_cost(robot, world, distance) {
+                match Spotlight::calculate_illuminate_cost(robot, world, distance) {
                     Err(e) => {
                         return Err(e);
                     }
@@ -106,7 +105,6 @@ impl Spotlight {
     /// # Return
     /// - Result<usize, String> => Ok(cost) indicates the required energy, Err(e) represents a possible error described by String e.
     pub fn calculate_illuminate_cost(
-        &self,
         robot: &impl Runnable,
         world: &World,
         distance: usize,

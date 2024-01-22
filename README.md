@@ -4,7 +4,6 @@
 #### *illuminate* discovers the tiles of a square area around the robot.
 ```rust
 pub fn illuminate(
-	&self,
 	robot: &mut impl Runnable,
 	world: &mut World,
 	distance: usize,
@@ -20,7 +19,6 @@ pub fn illuminate(
 #### *calculate_illuminate_cost* calculates the energy required by *illuminate* to discover the square area with the given distance.
 ```rust
 pub fn calculate_illuminate_cost(
-	&self,
 	robot: &impl Runnable,
 	world: &World,
 	distance: usize,

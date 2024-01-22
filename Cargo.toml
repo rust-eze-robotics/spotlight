@@ -4,7 +4,7 @@
 name = "rust_eze_spotlight"
 description = "Rust-eze Robotics Spotlight"
 authors = ["Guglielmo Boi", "Davide Andreolli", "Chiara Sabaini", "Aris Tomaselli"]
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 exclude = [".*"]
 
