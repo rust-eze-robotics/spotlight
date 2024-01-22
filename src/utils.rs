@@ -1,4 +1,4 @@
-use robotics_lib::world::{tile::Tile};
+use robotics_lib::world::tile::Tile;
 
 pub(crate) fn calculate_view_cost(distance: usize) -> usize {
     match distance {

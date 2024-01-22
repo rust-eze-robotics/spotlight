@@ -1,4 +1,4 @@
-use robotics_lib::interface::{discover_tiles, one_direction_view, robot_map, Direction, Tools};
+use robotics_lib::interface::{discover_tiles, one_direction_view, robot_map, robot_view, Direction, Tools};
 use robotics_lib::runner::Runnable;
 use robotics_lib::world::World;
 use utils::{
@@ -47,6 +47,8 @@ impl Spotlight {
                         return Err(e);
                     }
                     Ok(_) => {
+                        robot_view(robot, world);
+
                         if one_direction_view(robot, world, Direction::Right, distance).is_err() {
                             return Err(String::from(
                                 "Error while calling one_direction_view interface!",
@@ -135,11 +137,15 @@ impl Spotlight {
                 let bottom_right_corner =
                     get_bottom_right_corner(robot_row, robot_col, distance, size);
 
-                let mut tiles: Vec<_> = Vec::new();
+                let mut tiles = Vec::new();
 
                 for row in (up_left_corner.0)..=(bottom_right_corner.0) {
                     for col in (up_left_corner.1)..=(bottom_right_corner.1) {
-                        tiles.push((row, col));
+                        if row > robot_row + 1 || (robot_row > 1 && row < robot_row - 1) {
+                            if col > robot_col + 1 || (robot_col > 1 && col < robot_col - 1) {
+                                tiles.push((row, col));
+                            }
+                        }
                     }
                 }
 
