@@ -1,5 +1,4 @@
-use robotics_lib::interface::robot_map;
-use robotics_lib::world::World;
+use robotics_lib::world::{tile::Tile};
 
 pub(crate) fn calculate_view_cost(distance: usize) -> usize {
     match distance {
@@ -8,16 +7,17 @@ pub(crate) fn calculate_view_cost(distance: usize) -> usize {
     }
 }
 
-pub(crate) fn calculate_discover_tiles_cost(world: &World, tiles: Vec<(usize, usize)>) -> usize {
+pub(crate) fn calculate_discover_tiles_cost(
+    map: &Vec<Vec<Option<Tile>>>,
+    tiles: Vec<(usize, usize)>,
+) -> usize {
     let mut ret = 0;
 
-    if let Some(map) = robot_map(world) {
-        let size = map.len();
+    let size = map.len();
 
-        for (row, col) in tiles {
-            if row < size && col < size && map[row][col].is_none() {
-                ret += 1;
-            }
+    for (row, col) in tiles {
+        if row < size && col < size && map[row][col].is_none() {
+            ret += 1;
         }
     }
 

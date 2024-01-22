@@ -143,7 +143,7 @@ impl Spotlight {
                     }
                 }
 
-                ret += calculate_discover_tiles_cost(world, tiles);
+                ret += calculate_discover_tiles_cost(&map, tiles);
 
                 Ok(ret)
             }
