@@ -1,4 +1,6 @@
-use robotics_lib::interface::{discover_tiles, one_direction_view, robot_map, robot_view, Direction, Tools};
+use robotics_lib::interface::{
+    discover_tiles, one_direction_view, robot_map, robot_view, Direction, Tools,
+};
 use robotics_lib::runner::Runnable;
 use robotics_lib::world::World;
 use utils::{
