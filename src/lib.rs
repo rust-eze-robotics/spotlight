@@ -109,10 +109,12 @@ impl Spotlight {
                             }
                         });
 
-                        if let Err(_) = discover_tiles(robot, world, &tiles) {
-                            return Err(String::from(
-                                "Error while calling discover_tiles interface!",
-                            ));
+                        for (row, col) in tiles.iter() {
+                            if let Err(_) = discover_tiles(robot, world, &vec![(*row, *col)]) {
+                                return Err(String::from(
+                                    "Error while calling discover_tiles interface!",
+                                ));
+                            }
                         }
                     }
                 }
