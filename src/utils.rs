@@ -1,5 +1,9 @@
 use robotics_lib::world::tile::Tile;
 
+pub(crate) fn calculate_distance(a: (usize, usize), b: (usize, usize)) -> usize {
+    (i64::abs(a.0 as i64 - b.0 as i64) + i64::abs(a.1 as i64 - b.1 as i64)) as usize
+}
+
 pub(crate) fn calculate_view_cost(distance: usize) -> usize {
     match distance {
         0..=1 => 0,

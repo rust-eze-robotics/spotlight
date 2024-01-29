@@ -4,7 +4,8 @@ use robotics_lib::interface::{
 use robotics_lib::runner::Runnable;
 use robotics_lib::world::World;
 use utils::{
-    calculate_discover_tiles_cost, calculate_view_cost, get_bottom_right_corner, get_up_left_corner,
+    calculate_discover_tiles_cost, calculate_distance, calculate_view_cost,
+    get_bottom_right_corner, get_up_left_corner,
 };
 
 mod utils;
@@ -31,7 +32,7 @@ impl Spotlight {
     ) -> Result<(), String> {
         match robot_map(world) {
             None => Err(String::from("Map not visible!")),
-            Some(map) => {
+            Some(mut map) => {
                 let size = map.len();
                 let distance = std::cmp::min(distance, size);
 
@@ -41,6 +42,10 @@ impl Spotlight {
                 );
 
                 if distance <= 1 {
+                    if distance == 1 {
+                        robot_view(robot, world);
+                    }
+
                     return Ok(());
                 }
 
@@ -75,21 +80,39 @@ impl Spotlight {
                             ));
                         }
 
+                        map = robot_map(world).unwrap();
+
                         let up_left_corner = get_up_left_corner(robot_row, robot_col, distance);
                         let bottom_right_corner =
                             get_bottom_right_corner(robot_row, robot_col, distance, size);
 
+                        let mut tiles = Vec::new();
+
                         for row in (up_left_corner.0)..=(bottom_right_corner.0) {
                             for col in (up_left_corner.1)..=(bottom_right_corner.1) {
                                 if map[row][col].is_none() {
-                                    if let Err(_) = discover_tiles(robot, world, &vec![(row, col)])
-                                    {
-                                        return Err(String::from(
-                                            "Error while calling discover_tiles interface!",
-                                        ));
-                                    }
+                                    tiles.push((row, col));
                                 }
                             }
+                        }
+
+                        tiles.sort_by(|a, b| {
+                            let a_distance = calculate_distance(*a, (robot_row, robot_col));
+                            let b_distance = calculate_distance(*b, (robot_row, robot_col));
+
+                            if a_distance != b_distance {
+                                a_distance.cmp(&b_distance)
+                            } else if a.0 != b.0 {
+                                a.0.cmp(&b.0)
+                            } else {
+                                a.1.cmp(&b.1)
+                            }
+                        });
+
+                        if let Err(_) = discover_tiles(robot, world, &tiles) {
+                            return Err(String::from(
+                                "Error while calling discover_tiles interface!",
+                            ));
                         }
                     }
                 }
